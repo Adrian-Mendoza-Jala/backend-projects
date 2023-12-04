@@ -10,3 +10,4 @@
 ## ✅ Class 7 - Console App | Generic Class
 ## ✅ Class 8 - Console App | Exceptions
 ## ✅ Class 9 - Research
+## ✅ Class 10 - Design an Application for Skill Mastery
