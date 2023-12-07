@@ -11,6 +11,5 @@
 ### ✅ Class 9 - Research
 ### ✅ Class 10 - Design an Application for Skill Mastery
 ___
-
 ## SkillMasteryAPI 
--  ✅  Skill (GetAll, GetById, Post) Connection 
+-  ✅  Skill (GetAll, GetById, Post, Put, Delete, Get with Pagination) Connection with Microsoft SQL Server
