@@ -1,40 +1,44 @@
 using Microsoft.EntityFrameworkCore;
-using SkillMasteryAPI.Data;
-using SkillMasteryAPI.Repositories.Interfaces;
-using SkillMasteryAPI.Repositories;
-using SkillMasteryAPI.Services.Interfaces;
-using SkillMasteryAPI.Services;
-using System.Globalization;
+using SkillMasteryAPI.Application.Services.Interfaces;
+using SkillMasteryAPI.Application.Services;
+using SkillMasteryAPI.Infrastructure.Data;
+using SkillMasteryAPI.Infrastructure.Repositories.Implementations;
+using SkillMasteryAPI.Infrastructure.Repositories.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Add services to the container.
-builder.Services.AddControllers();
-builder.Services.AddScoped<ISkillRepository, SkillRepository>();
-builder.Services.AddScoped<ISkillService, SkillService>();
-
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-builder.Services.AddDbContext<DataContext>(options =>
-{
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
-});
+// Configure services.
+ConfigureServices(builder.Services, builder.Configuration);
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-
-app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
-app.MapControllers();
+ConfigureMiddleware(app, app.Environment);
 
 app.Run();
+
+void ConfigureServices(IServiceCollection services, IConfiguration configuration)
+{
+    services.AddControllers();
+    services.AddScoped<ISkillRepository, SkillRepository>();
+    services.AddScoped<ISkillService, SkillService>();
+    services.AddEndpointsApiExplorer();
+    services.AddSwaggerGen();
+    services.AddDbContext<DataContext>(options =>
+    {
+        options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
+    });
+}
+
+void ConfigureMiddleware(WebApplication app, IWebHostEnvironment env)
+{
+    if (env.IsDevelopment())
+    {
+        app.UseSwagger();
+        app.UseSwaggerUI();
+    }
+
+    app.UseHttpsRedirection();
+    app.UseAuthorization();
+    app.MapControllers();
+}

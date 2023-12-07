@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SkillMasteryAPI.Models;
-using SkillMasteryAPI.Services.Interfaces;
+using SkillMasteryAPI.Application.Services.Interfaces;
+using SkillMasteryAPI.Domain.Entities;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace SkillMasteryAPI.Controllers
+namespace SkillMasteryAPI.Presentation.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -46,28 +46,30 @@ namespace SkillMasteryAPI.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutSkill(int id, Skill skill)
         {
-            if (id != skill.Id)
+            if (skill == null)
             {
                 return BadRequest();
             }
 
             try
             {
-                await _skillService.UpdateSkillAsync(skill);
-            }
-            catch
-            {
-                if (!_skillService.SkillExists(id))
+                var existingSkill = await _skillService.GetSkillByIdAsync(id);
+                if (existingSkill == null)
                 {
                     return NotFound();
                 }
-                else
-                {
-                    throw;
-                }
-            }
+                
+                existingSkill.Name = skill.Name;
+                existingSkill.Description = skill.Description;
 
-            return Ok(new { Message = $"Skill with ID {id} updated successfully." });
+                await _skillService.UpdateSkillAsync(existingSkill);
+
+                return Ok(new { Message = $"Skill with ID {id} updated successfully." });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "An error occurred while updating the skill.");
+            }
         }
 
         [HttpDelete("{id}")]
