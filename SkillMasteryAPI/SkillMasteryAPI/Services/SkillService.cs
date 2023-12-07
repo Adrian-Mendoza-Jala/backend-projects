@@ -29,5 +29,34 @@ namespace SkillMasteryAPI.Services
         {
             await _skillRepository.AddSkillAsync(skill);
         }
+
+        public async Task UpdateSkillAsync(Skill skill)
+        {
+            await _skillRepository.UpdateSkillAsync(skill);
+        }
+
+        public async Task DeleteSkillAsync(int id)
+        {
+            var skill = await GetSkillByIdAsync(id);
+            if (skill != null)
+            {
+                await _skillRepository.DeleteSkillAsync(skill);
+            }
+        }
+
+        public bool SkillExists(int id)
+        {
+            return _skillRepository.SkillExists(id);
+        }
+
+        public async Task<IEnumerable<Skill>> GetPaginatedSkillsAsync(int pageNumber, int pageSize)
+        {
+            return await _skillRepository.GetPaginatedSkillsAsync(pageNumber, pageSize);
+        }
+
+        public async Task<int> GetTotalCountAsync()
+        {
+            return await _skillRepository.GetTotalCountAsync();
+        }
     }
 }
