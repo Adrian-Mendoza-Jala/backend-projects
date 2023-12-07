@@ -1,4 +1,4 @@
-﻿namespace SkillMasteryAPI.Models
+﻿namespace SkillMasteryAPI.Domain.Entities
 {
     public class Skill
     {

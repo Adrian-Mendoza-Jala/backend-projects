@@ -1,10 +1,10 @@
-﻿using SkillMasteryAPI.Models;
-using SkillMasteryAPI.Services.Interfaces;
-using SkillMasteryAPI.Repositories.Interfaces;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using SkillMasteryAPI.Domain.Entities;
+using SkillMasteryAPI.Infrastructure.Repositories.Interfaces;
+using SkillMasteryAPI.Application.Services.Interfaces;
 
-namespace SkillMasteryAPI.Services
+namespace SkillMasteryAPI.Application.Services
 {
     public class SkillService : ISkillService
     {

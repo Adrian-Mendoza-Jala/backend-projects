@@ -1,8 +1,8 @@
-﻿using SkillMasteryAPI.Models;
+﻿using SkillMasteryAPI.Domain.Entities;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace SkillMasteryAPI.Services.Interfaces
+namespace SkillMasteryAPI.Application.Services.Interfaces
 {
     public interface ISkillService
     {

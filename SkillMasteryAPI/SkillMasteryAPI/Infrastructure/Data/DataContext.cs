@@ -1,14 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SkillMasteryAPI.Models;
+using SkillMasteryAPI.Domain.Entities;
 
-namespace SkillMasteryAPI.Data
+namespace SkillMasteryAPI.Infrastructure.Data
 {
     public class DataContext : DbContext
     {
-       
-        public DataContext(DbContextOptions<DataContext> options) :base(options)
+
+        public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
-            
+
         }
 
         public DbSet<Skill> Skills { get; set; }

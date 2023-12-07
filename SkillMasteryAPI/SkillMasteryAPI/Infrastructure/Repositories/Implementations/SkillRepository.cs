@@ -1,11 +1,11 @@
-﻿using SkillMasteryAPI.Data;
-using SkillMasteryAPI.Models;
-using SkillMasteryAPI.Repositories.Interfaces;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using SkillMasteryAPI.Domain.Entities;
+using SkillMasteryAPI.Infrastructure.Repositories.Interfaces;
+using SkillMasteryAPI.Infrastructure.Data;
 
-namespace SkillMasteryAPI.Repositories
+namespace SkillMasteryAPI.Infrastructure.Repositories.Implementations
 {
     public class SkillRepository : ISkillRepository
     {

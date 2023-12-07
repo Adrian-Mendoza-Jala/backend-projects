@@ -13,3 +13,6 @@
 ___
 ## SkillMasteryAPI 
 -  ✅  Skill (GetAll, GetById, Post, Put, Delete, Get with Pagination) Connection with Microsoft SQL Server
+-  ✅  Interfaces for Services and Repositories
+-  ✅  Dependency Injection
+-  ✅  Domain Centric Architecture
