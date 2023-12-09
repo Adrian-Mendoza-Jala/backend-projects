@@ -16,3 +16,5 @@ ___
 -  ✅  Interfaces for Services and Repositories
 -  ✅  Dependency Injection
 -  ✅  Domain Centric Architecture
+-  ✅  Global Exception handler Middleware
+-  ✅  Response Compression using gzip
