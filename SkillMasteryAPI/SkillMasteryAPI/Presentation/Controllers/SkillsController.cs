@@ -68,12 +68,14 @@ namespace SkillMasteryAPI.Presentation.Controllers
 
                 await _skillService.UpdateSkillAsync(existingSkill);
 
-                return Ok(new { Message = $"Skill with ID {id} updated successfully." });
+                //return Ok(new { Message = $"Skill with ID {id} updated successfully." });
             }
             catch (Exception ex)
             {
                 return StatusCode(500, "An error occurred while updating the skill.");
             }
+
+            return NoContent();
         }
 
         [HttpDelete("{id}")]
