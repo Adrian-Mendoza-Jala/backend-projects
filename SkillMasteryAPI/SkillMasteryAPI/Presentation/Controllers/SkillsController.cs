@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SkillMasteryAPI.Presentation.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     [ApiController]
     public class SkillsController : ControllerBase
     {
@@ -27,6 +27,10 @@ namespace SkillMasteryAPI.Presentation.Controllers
         [HttpPost]
         public async Task<ActionResult<Skill>> PostSkill(Skill skill)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             await _skillService.AddSkillAsync(skill);
             return CreatedAtAction(nameof(GetSkill), new { id = skill.Id }, skill);
         }
@@ -46,9 +50,9 @@ namespace SkillMasteryAPI.Presentation.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutSkill(int id, Skill skill)
         {
-            if (skill == null)
+            if (!ModelState.IsValid)
             {
-                return BadRequest();
+                return BadRequest(ModelState);
             }
 
             try

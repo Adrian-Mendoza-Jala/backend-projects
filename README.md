@@ -18,3 +18,5 @@ ___
 -  ✅  Domain Centric Architecture
 -  ✅  Global Exception handler Middleware
 -  ✅  Response Compression using gzip
+-  ✅  Versioning
+-  ✅  Fluent Validation
