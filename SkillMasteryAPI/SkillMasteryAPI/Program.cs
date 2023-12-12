@@ -7,6 +7,10 @@ using SkillMasteryAPI.Infrastructure.Data;
 using SkillMasteryAPI.Infrastructure.Repositories.Implementations;
 using SkillMasteryAPI.Infrastructure.Repositories.Interfaces;
 using SkillMasteryAPI.Infrastructure.Middleware;
+using SkillMasteryAPI.Application.Validators;
+using Microsoft.AspNetCore.Mvc.Versioning;
+using Microsoft.AspNetCore.Mvc;
+using FluentValidation.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,9 +27,23 @@ app.Run();
 void ConfigureServices(IServiceCollection services, IConfiguration configuration)
 {
     services.AddControllers();
+    builder.Services.AddRouting(options => options.LowercaseUrls = true);
     services.AddScoped<ISkillRepository, SkillRepository>();
     services.AddScoped<ISkillService, SkillService>();
+    services.AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<SkillValidator>());
+    builder.Services.AddControllers()
+    .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<SkillValidator>());
+
     services.AddEndpointsApiExplorer();
+
+    services.AddApiVersioning(options =>
+    {
+        options.DefaultApiVersion = new ApiVersion(1, 0);
+        options.AssumeDefaultVersionWhenUnspecified = true;
+        options.ReportApiVersions = true;
+        options.ApiVersionReader = new UrlSegmentApiVersionReader();
+    });
+
     services.AddSwaggerGen();
 
     services.AddResponseCompression(options =>
