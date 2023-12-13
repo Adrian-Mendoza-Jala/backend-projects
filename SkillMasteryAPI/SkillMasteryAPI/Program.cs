@@ -27,12 +27,11 @@ app.Run();
 void ConfigureServices(IServiceCollection services, IConfiguration configuration)
 {
     services.AddControllers();
+    builder.Services.AddHealthChecks();
     builder.Services.AddRouting(options => options.LowercaseUrls = true);
     services.AddScoped<ISkillRepository, SkillRepository>();
     services.AddScoped<ISkillService, SkillService>();
     services.AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<SkillValidator>());
-    builder.Services.AddControllers()
-    .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<SkillValidator>());
 
     services.AddEndpointsApiExplorer();
 
@@ -71,6 +70,8 @@ void ConfigureMiddleware(WebApplication app, IWebHostEnvironment env)
     }
     app.UseMiddleware<ExceptionMiddleware>();
     app.UseResponseCompression();
+
+    app.MapHealthChecks("/health");
 
     app.UseHttpsRedirection();
     app.UseAuthorization();

@@ -20,3 +20,5 @@ ___
 -  ✅  Response Compression using gzip
 -  ✅  Versioning
 -  ✅  Fluent Validation
+-  ✅  Health Checker
+-  ✅  Status Code
