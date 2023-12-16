@@ -10,6 +10,7 @@
 ### ✅ Class 8 - Console App | Exceptions
 ### ✅ Class 9 - Research
 ### ✅ Class 10 - Design an Application for Skill Mastery
+### ✅ Class 20 - LinQ Exercises
 ___
 ## SkillMasteryAPI 
 -  ✅  Skill (GetAll, GetById, Post, Put, Delete, Get with Pagination) Connection with Microsoft SQL Server
