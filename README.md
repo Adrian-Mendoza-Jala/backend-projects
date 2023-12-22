@@ -12,6 +12,7 @@
 ### ✅ Class 10 - Design an Application for Skill Mastery
 ### ✅ Class 20 - LinQ Exercises
 ### ✅ Class 21 - Struct, Record and Class
+### ✅ Class 25 - Exercise ValidBrackets
 ___
 ## SkillMasteryAPI 
 -  ✅  Skill (GetAll, GetById, Post, Put, Delete, Get with Pagination) Connection with Microsoft SQL Server
