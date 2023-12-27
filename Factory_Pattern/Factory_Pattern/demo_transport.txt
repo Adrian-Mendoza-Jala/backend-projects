@@ -1,0 +1,54 @@
+﻿// Transport interface
+public interface ITransport
+{
+    string Deliver();
+}
+
+// Concrete Transport implementations
+public class Truck : ITransport
+{
+    public string Deliver()
+    {
+        return "Deliver by land in a box";
+    }
+}
+
+public class Ship : ITransport
+{
+    public string Deliver()
+    {
+        return "Deliver by sea in a container";
+    }
+}
+
+// The Factory class for Transport
+public static class TransportFactory
+{
+    public static ITransport CreateTransport(string type)
+    {
+        switch (type)
+        {
+            case "road":
+                return new Truck();
+            case "sea":
+                return new Ship();
+            default:
+                throw new ArgumentException("Invalid transport type");
+        }
+    }
+}
+
+// Client code
+class Program
+{
+    static void Main(string[] args)
+    {
+        // Create a truck and deliver by land
+        ITransport roadTransport = TransportFactory.CreateTransport("road");
+        Console.WriteLine(roadTransport.Deliver());  // Output: Deliver by land in a box
+
+        // Create a ship and deliver by sea
+        ITransport seaTransport = TransportFactory.CreateTransport("sea");
+        Console.WriteLine(seaTransport.Deliver());  // Output: Deliver by sea in a container
+    }
+}
