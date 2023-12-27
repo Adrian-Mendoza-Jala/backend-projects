@@ -14,6 +14,23 @@ namespace Factory_Pattern
                 IEnemy enemy = game.SpawnEnemy();
                 enemy.Attack();
             }
+
+            EnemyFactory factory;
+
+            // Example of using the RandomEnemyFactory
+            factory = new RandomEnemyFactory();
+            IEnemy randomEnemy = factory.CreateEnemy();
+            randomEnemy.Attack();
+
+            // Example of using the RandomDifficultEnemyFactory
+            factory = new RandomDifficultEnemyFactory();
+            IEnemy difficultEnemy = factory.CreateEnemy();
+            difficultEnemy.Attack();
+
+            // Example of using the GoombaFactory
+            factory = new GoombaFactory();
+            IEnemy goomba = factory.CreateEnemy();
+            goomba.Attack();
         }
     }
 }
