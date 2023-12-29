@@ -14,6 +14,7 @@
 ### ✅ Class 21 - Struct, Record and Class
 ### ✅ Class 25 - Exercise ValidBrackets
 ### ✅ Class 27 - Factory Method
+### ✅ Builder Pattern
 
 ___
 ## SkillMasteryAPI 
