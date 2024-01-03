@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34309.116
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkillMasteryAPI", "SkillMasteryAPI\SkillMasteryAPI.csproj", "{7E5EC79F-5ECB-484F-978F-E6B26B164833}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SkillMasteryAPI", "SkillMasteryAPI\SkillMasteryAPI.csproj", "{7E5EC79F-5ECB-484F-978F-E6B26B164833}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkillMasteryAPI.Test", "SkillMasteryAPI.Test\SkillMasteryAPI.Test.csproj", "{CFD0FF67-3D59-4B54-A33C-33F7ABB374C7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{7E5EC79F-5ECB-484F-978F-E6B26B164833}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7E5EC79F-5ECB-484F-978F-E6B26B164833}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7E5EC79F-5ECB-484F-978F-E6B26B164833}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CFD0FF67-3D59-4B54-A33C-33F7ABB374C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFD0FF67-3D59-4B54-A33C-33F7ABB374C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFD0FF67-3D59-4B54-A33C-33F7ABB374C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFD0FF67-3D59-4B54-A33C-33F7ABB374C7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
