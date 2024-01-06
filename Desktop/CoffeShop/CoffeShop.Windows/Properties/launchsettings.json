@@ -1,0 +1,10 @@
+{
+	"profiles": {
+		"CoffeShop.Windows (Unpackaged)": {
+			"commandName": "Project"
+		},
+		"CoffeShop.Windows (Package)": {
+			"commandName": "MsixPackage"
+		}
+	}
+}

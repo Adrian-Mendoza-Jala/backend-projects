@@ -1,0 +1,10 @@
+{
+  "background_color": "#ffffff",
+  "description": "CoffeShop",
+  "display": "standalone",
+  "name": "CoffeShop",
+  "short_name": "CoffeShop",
+  "start_url": "/index.html",
+  "theme_color": "#ffffff",
+  "scope": "/"
+}
