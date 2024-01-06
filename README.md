@@ -30,6 +30,10 @@
 
 ### ✅ Builder Pattern
 
+### ✅ Desktop App
+
+### ✅ Concurrent Task Manager
+
 ---
 
 ## SkillMasteryAPI
