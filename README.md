@@ -4,6 +4,8 @@
 
 ### ✅ Script and Diagram for SkillMastery
 
+### ✅ SQL statements
+
 ___
 ## Backend I
 
