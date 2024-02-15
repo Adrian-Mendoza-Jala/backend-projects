@@ -1,23 +1,19 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
-using SkillMasteryAPI.Domain.Enums;
 
 namespace SkillMasteryAPI.Domain.Entities;
 
-public class Goal : BaseEntity
+public class Progress : BaseEntity
 {
     [Required]
     public int SkillId { get; set; }
 
     [Required]
     [MaxLength(255)]
-    public string Description { get; set; }
-
-    public DateTime Deadline { get; set; }
+    public string Milestones { get; set; }
 
     [Required]
-    [EnumDataType(typeof(Status))]
-    public Status Status { get; set; }
+    public DateTime Date { get; set; }
 
     [ForeignKey("SkillId")]
     public Skill Skill { get; set; }

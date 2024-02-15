@@ -37,11 +37,7 @@ namespace SkillMasteryAPI.Application.Services
 
         public async Task DeleteSkillAsync(int id)
         {
-            var skill = await GetSkillByIdAsync(id);
-            if (skill != null)
-            {
-                await _skillRepository.DeleteSkillAsync(skill);
-            }
+            await _skillRepository.DeleteSkillAsync(id);
         }
 
         public bool SkillExists(int id)

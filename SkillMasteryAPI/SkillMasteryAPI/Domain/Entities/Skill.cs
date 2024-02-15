@@ -1,9 +1,14 @@
-﻿namespace SkillMasteryAPI.Domain.Entities
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace SkillMasteryAPI.Domain.Entities;
+
+public class Skill : BaseEntity
 {
-    public class Skill
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-    }
+    [Required]
+    [MaxLength(255)]
+    public string Name { get; set; }
+
+    [MaxLength(255)]
+    public string Description { get; set; }
 }
+

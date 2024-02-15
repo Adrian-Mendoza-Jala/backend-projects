@@ -38,10 +38,14 @@ namespace SkillMasteryAPI.Infrastructure.Repositories.Implementations
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteSkillAsync(Skill skill)
+        public async Task DeleteSkillAsync(int id)
         {
-            _context.Skills.Remove(skill);
-            await _context.SaveChangesAsync();
+            var skill = await _context.Skills.FindAsync(id);
+            if (skill != null)
+            {
+                _context.Skills.Remove(skill);
+                await _context.SaveChangesAsync();
+            }
         }
 
         public bool SkillExists(int id)

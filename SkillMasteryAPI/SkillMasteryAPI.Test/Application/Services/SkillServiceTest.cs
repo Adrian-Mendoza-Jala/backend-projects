@@ -87,13 +87,13 @@ namespace SkillMasteryAPI.Test.Application.Services
             var skillId = 1;
             var existingSkill = new Skill { Id = skillId, Name = "Existing Skill", Description = "Existing Description" };
             _mockRepo.Setup(repo => repo.GetSkillByIdAsync(skillId)).ReturnsAsync(existingSkill);
-            _mockRepo.Setup(repo => repo.DeleteSkillAsync(existingSkill)).Returns(Task.CompletedTask).Verifiable();
+            _mockRepo.Setup(repo => repo.DeleteSkillAsync(existingSkill.Id)).Returns(Task.CompletedTask).Verifiable();
 
             // Act
             await _skillService.DeleteSkillAsync(skillId);
 
             // Assert
-            _mockRepo.Verify(repo => repo.DeleteSkillAsync(existingSkill), Times.Once);
+            _mockRepo.Verify(repo => repo.DeleteSkillAsync(existingSkill.Id), Times.Once);
         }
 
 

@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using SkillMasteryAPI.Domain.Entities;
 
 namespace SkillMasteryAPI.Infrastructure.Data
@@ -11,31 +10,35 @@ namespace SkillMasteryAPI.Infrastructure.Data
         }
 
         public DbSet<Skill> Skills { get; set; }
-
-        // Identity tables
-        public DbSet<IdentityUser> Users { get; set; }
-        public DbSet<IdentityRole> Roles { get; set; }
-        public DbSet<IdentityUserRole<string>> UserRoles { get; set; }
-        public DbSet<IdentityUserClaim<string>> UserClaims { get; set; }
-        public DbSet<IdentityUserLogin<string>> UserLogins { get; set; }
-        public DbSet<IdentityUserToken<string>> UserTokens { get; set; }
-        public DbSet<IdentityRoleClaim<string>> RoleClaims { get; set; }
+        public DbSet<Goal> Goals { get; set; }
+        public DbSet<Progress> Progresses { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            // If you've renamed the ASP.NET Identity table names, configure them here as well
-            modelBuilder.Entity<IdentityUser>().ToTable("Users");
-            modelBuilder.Entity<IdentityRole>().ToTable("Roles");
-            modelBuilder.Entity<IdentityUserRole<string>>().ToTable("UserRoles");
-            modelBuilder.Entity<IdentityUserClaim<string>>().ToTable("UserClaims");
-            modelBuilder.Entity<IdentityUserLogin<string>>().ToTable("UserLogins");
-            modelBuilder.Entity<IdentityUserToken<string>>().ToTable("UserTokens");
-            modelBuilder.Entity<IdentityRoleClaim<string>>().ToTable("RoleClaims");
-
-            // Configuring Skill entity
+            // Configuraciones de las entidades
             modelBuilder.Entity<Skill>().ToTable("Skills");
+            modelBuilder.Entity<Goal>(entity =>
+            {
+                entity.Property(e => e.Status)
+                      .HasConversion<int>();
+            });
+            modelBuilder.Entity<Progress>().ToTable("Progresses");
+
+            // Configurar la relación entre Goal y Skill
+            modelBuilder.Entity<Goal>()
+                .HasOne<Skill>(g => g.Skill)
+                .WithMany()
+                .HasForeignKey(g => g.SkillId);
+
+            // Configurar la relación entre Progress y Skill
+            modelBuilder.Entity<Progress>()
+                .HasOne<Skill>(p => p.Skill)
+                .WithMany()
+                .HasForeignKey(p => p.SkillId);
+
+            // Seed initial data for Skill
             modelBuilder.Entity<Skill>().HasData(
                 new Skill { Id = 1, Name = "Programming", Description = "The ability to write computer programs" },
                 new Skill { Id = 2, Name = "Design", Description = "The ability to create designs for user interfaces" },

@@ -9,10 +9,10 @@ namespace SkillMasteryAPI.Application.Validators
         {
             RuleFor(skill => skill.Name)
                 .NotEmpty().WithMessage("Name is required.")
-                .Length(2, 100).WithMessage("Name must be between 2 and 100 characters.");
+                .Length(2, 255).WithMessage("Name must be between 2 and 255 characters.");
 
             RuleFor(skill => skill.Description)
-                .MaximumLength(500).WithMessage("Description cannot be more than 500 characters.");
+                .MaximumLength(255).WithMessage("Description cannot be more than 255 characters.");
 
         }
     }
