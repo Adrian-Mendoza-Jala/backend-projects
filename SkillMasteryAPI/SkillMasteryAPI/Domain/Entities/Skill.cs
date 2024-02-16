@@ -10,5 +10,7 @@ public class Skill : BaseEntity
 
     [MaxLength(255)]
     public string Description { get; set; }
+
+    // public virtual ICollection<Goal> Goals { get; set; } = new List<Goal>();
 }
 

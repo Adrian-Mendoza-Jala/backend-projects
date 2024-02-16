@@ -3,21 +3,24 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SkillMasteryAPI.Infrastructure.Data;
 
 #nullable disable
 
-namespace SkillMasteryAPI.Data.Migrations
+namespace SkillMasteryAPI.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20240216165729_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.1")
+                .HasAnnotation("ProductVersion", "8.0.2")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -55,6 +58,38 @@ namespace SkillMasteryAPI.Data.Migrations
                     b.HasIndex("SkillId");
 
                     b.ToTable("Goals");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2024, 2, 16, 16, 57, 29, 144, DateTimeKind.Utc).AddTicks(665),
+                            Deadline = new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Complete a basic programming course",
+                            SkillId = 1,
+                            Status = 1,
+                            UpdatedAt = new DateTime(2024, 2, 16, 16, 57, 29, 144, DateTimeKind.Utc).AddTicks(665)
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTime(2024, 2, 16, 16, 57, 29, 144, DateTimeKind.Utc).AddTicks(672),
+                            Deadline = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Design a user interface for a mobile app",
+                            SkillId = 2,
+                            Status = 0,
+                            UpdatedAt = new DateTime(2024, 2, 16, 16, 57, 29, 144, DateTimeKind.Utc).AddTicks(672)
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedAt = new DateTime(2024, 2, 16, 16, 57, 29, 144, DateTimeKind.Utc).AddTicks(673),
+                            Deadline = new DateTime(2024, 9, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Optimize database performance",
+                            SkillId = 3,
+                            Status = 1,
+                            UpdatedAt = new DateTime(2024, 2, 16, 16, 57, 29, 144, DateTimeKind.Utc).AddTicks(674)
+                        });
                 });
 
             modelBuilder.Entity("SkillMasteryAPI.Domain.Entities.Progress", b =>
@@ -121,26 +156,26 @@ namespace SkillMasteryAPI.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2024, 2, 15, 5, 55, 38, 382, DateTimeKind.Utc).AddTicks(6117),
+                            CreatedAt = new DateTime(2024, 2, 16, 16, 57, 29, 144, DateTimeKind.Utc).AddTicks(481),
                             Description = "The ability to write computer programs",
                             Name = "Programming",
-                            UpdatedAt = new DateTime(2024, 2, 15, 5, 55, 38, 382, DateTimeKind.Utc).AddTicks(6119)
+                            UpdatedAt = new DateTime(2024, 2, 16, 16, 57, 29, 144, DateTimeKind.Utc).AddTicks(484)
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2024, 2, 15, 5, 55, 38, 382, DateTimeKind.Utc).AddTicks(6121),
+                            CreatedAt = new DateTime(2024, 2, 16, 16, 57, 29, 144, DateTimeKind.Utc).AddTicks(486),
                             Description = "The ability to create designs for user interfaces",
                             Name = "Design",
-                            UpdatedAt = new DateTime(2024, 2, 15, 5, 55, 38, 382, DateTimeKind.Utc).AddTicks(6121)
+                            UpdatedAt = new DateTime(2024, 2, 16, 16, 57, 29, 144, DateTimeKind.Utc).AddTicks(486)
                         },
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2024, 2, 15, 5, 55, 38, 382, DateTimeKind.Utc).AddTicks(6122),
+                            CreatedAt = new DateTime(2024, 2, 16, 16, 57, 29, 144, DateTimeKind.Utc).AddTicks(487),
                             Description = "The ability to manage and maintain database management systems",
                             Name = "Database",
-                            UpdatedAt = new DateTime(2024, 2, 15, 5, 55, 38, 382, DateTimeKind.Utc).AddTicks(6122)
+                            UpdatedAt = new DateTime(2024, 2, 16, 16, 57, 29, 144, DateTimeKind.Utc).AddTicks(488)
                         });
                 });
 

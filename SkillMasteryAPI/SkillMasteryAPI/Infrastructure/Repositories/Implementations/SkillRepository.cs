@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using SkillMasteryAPI.Domain.Entities;
 using SkillMasteryAPI.Infrastructure.Repositories.Interfaces;
 using SkillMasteryAPI.Infrastructure.Data;
+using System.Xml;
 
 namespace SkillMasteryAPI.Infrastructure.Repositories.Implementations
 {
@@ -19,11 +20,29 @@ namespace SkillMasteryAPI.Infrastructure.Repositories.Implementations
         public async Task<IEnumerable<Skill>> GetAllSkillsAsync()
         {
             return await _context.Skills.ToListAsync();
+
+            return await _context.Skills
+                .AsNoTracking()
+                .ToListAsync();
         }
 
         public async Task<Skill> GetSkillByIdAsync(int id)
         {
+
             return await _context.Skills.FindAsync(id);
+
+            return await _context.Skills
+                .Where(s => s.Id == id)
+                .Select(s => new Skill
+                {
+                    Id = s.Id,
+                    Name = s.Name,
+                    Description = s.Description,
+                    CreatedAt = s.CreatedAt,
+                    UpdatedAt = s.UpdatedAt
+                })
+                .AsNoTracking()
+                .FirstOrDefaultAsync(); 
         }
 
         public async Task AddSkillAsync(Skill skill)
@@ -34,6 +53,7 @@ namespace SkillMasteryAPI.Infrastructure.Repositories.Implementations
 
         public async Task UpdateSkillAsync(Skill skill)
         {
+            skill.UpdatedAt = DateTime.UtcNow;
             _context.Entry(skill).State = EntityState.Modified;
             await _context.SaveChangesAsync();
         }

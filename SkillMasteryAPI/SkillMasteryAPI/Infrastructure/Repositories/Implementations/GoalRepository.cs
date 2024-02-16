@@ -2,6 +2,7 @@
 using SkillMasteryAPI.Domain.Entities;
 using SkillMasteryAPI.Infrastructure.Data;
 using SkillMasteryAPI.Infrastructure.Repositories.Interfaces;
+using System;
 
 namespace SkillMasteryAPI.Infrastructure.Repositories.Implementations;
 
@@ -16,12 +17,14 @@ public class GoalRepository : IGoalRepository
 
     public async Task<IEnumerable<Goal>> GetAllGoalsAsync()
     {
-        return await _context.Goals.ToListAsync();
+        return await _context.Goals.Include(g => g.Skill).ToListAsync();
     }
 
     public async Task<Goal> GetGoalByIdAsync(int id)
     {
-        return await _context.Goals.FindAsync(id);
+        return await _context.Goals
+            .Include(g => g.Skill)
+            .SingleOrDefaultAsync(g => g.Id == id);
     }
 
     public async Task AddGoalAsync(Goal goal)
@@ -32,6 +35,7 @@ public class GoalRepository : IGoalRepository
 
     public async Task UpdateGoalAsync(Goal goal)
     {
+        goal.UpdatedAt = DateTime.UtcNow;
         _context.Entry(goal).State = EntityState.Modified;
         await _context.SaveChangesAsync();
     }

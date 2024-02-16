@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using SkillMasteryAPI.Application.DTOs;
 using SkillMasteryAPI.Application.Services.Interfaces;
 using SkillMasteryAPI.Domain.Entities;
-using SkillMasteryAPI.Domain.Enums;
 
 namespace SkillMasteryAPI.Presentation.Controllers;
 
@@ -73,6 +72,8 @@ public class GoalsController : ControllerBase
         try
         {
             await _goalService.UpdateGoalAsync(id, goalToUpdate);
+            var goalResponseDto = _mapper.Map<GoalResponseDTO>(goalToUpdate);
+            return Ok(goalResponseDto);
         }
         catch (Exception)
         {
@@ -91,6 +92,6 @@ public class GoalsController : ControllerBase
             return NotFound();
         }
 
-        return Ok(new { Message = $"Skill with ID {id} was deleted." });
+        return Ok(new { Message = $"Goal with ID {id} was deleted." });
     }
 }

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
 
-namespace SkillMasteryAPI.Data.Migrations
+namespace SkillMasteryAPI.Infrastructure.Data.Migrations
 {
     /// <inheritdoc />
     public partial class InitialCreate : Migration
@@ -81,9 +81,19 @@ namespace SkillMasteryAPI.Data.Migrations
                 columns: new[] { "Id", "CreatedAt", "Description", "Name", "UpdatedAt" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 2, 15, 5, 55, 38, 382, DateTimeKind.Utc).AddTicks(6117), "The ability to write computer programs", "Programming", new DateTime(2024, 2, 15, 5, 55, 38, 382, DateTimeKind.Utc).AddTicks(6119) },
-                    { 2, new DateTime(2024, 2, 15, 5, 55, 38, 382, DateTimeKind.Utc).AddTicks(6121), "The ability to create designs for user interfaces", "Design", new DateTime(2024, 2, 15, 5, 55, 38, 382, DateTimeKind.Utc).AddTicks(6121) },
-                    { 3, new DateTime(2024, 2, 15, 5, 55, 38, 382, DateTimeKind.Utc).AddTicks(6122), "The ability to manage and maintain database management systems", "Database", new DateTime(2024, 2, 15, 5, 55, 38, 382, DateTimeKind.Utc).AddTicks(6122) }
+                    { 1, new DateTime(2024, 2, 16, 16, 57, 29, 144, DateTimeKind.Utc).AddTicks(481), "The ability to write computer programs", "Programming", new DateTime(2024, 2, 16, 16, 57, 29, 144, DateTimeKind.Utc).AddTicks(484) },
+                    { 2, new DateTime(2024, 2, 16, 16, 57, 29, 144, DateTimeKind.Utc).AddTicks(486), "The ability to create designs for user interfaces", "Design", new DateTime(2024, 2, 16, 16, 57, 29, 144, DateTimeKind.Utc).AddTicks(486) },
+                    { 3, new DateTime(2024, 2, 16, 16, 57, 29, 144, DateTimeKind.Utc).AddTicks(487), "The ability to manage and maintain database management systems", "Database", new DateTime(2024, 2, 16, 16, 57, 29, 144, DateTimeKind.Utc).AddTicks(488) }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Goals",
+                columns: new[] { "Id", "CreatedAt", "Deadline", "Description", "SkillId", "Status", "UpdatedAt" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2024, 2, 16, 16, 57, 29, 144, DateTimeKind.Utc).AddTicks(665), new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified), "Complete a basic programming course", 1, 1, new DateTime(2024, 2, 16, 16, 57, 29, 144, DateTimeKind.Utc).AddTicks(665) },
+                    { 2, new DateTime(2024, 2, 16, 16, 57, 29, 144, DateTimeKind.Utc).AddTicks(672), new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "Design a user interface for a mobile app", 2, 0, new DateTime(2024, 2, 16, 16, 57, 29, 144, DateTimeKind.Utc).AddTicks(672) },
+                    { 3, new DateTime(2024, 2, 16, 16, 57, 29, 144, DateTimeKind.Utc).AddTicks(673), new DateTime(2024, 9, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "Optimize database performance", 3, 1, new DateTime(2024, 2, 16, 16, 57, 29, 144, DateTimeKind.Utc).AddTicks(674) }
                 });
 
             migrationBuilder.CreateIndex(

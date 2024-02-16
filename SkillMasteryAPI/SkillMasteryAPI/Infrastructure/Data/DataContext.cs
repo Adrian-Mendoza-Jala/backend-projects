@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SkillMasteryAPI.Domain.Entities;
+using SkillMasteryAPI.Domain.Enums;
 
 namespace SkillMasteryAPI.Infrastructure.Data
 {
@@ -30,6 +31,7 @@ namespace SkillMasteryAPI.Infrastructure.Data
             modelBuilder.Entity<Goal>()
                 .HasOne<Skill>(g => g.Skill)
                 .WithMany()
+                // .WithMany(s => s.Goals)
                 .HasForeignKey(g => g.SkillId);
 
             // Configurar la relación entre Progress y Skill
@@ -43,6 +45,13 @@ namespace SkillMasteryAPI.Infrastructure.Data
                 new Skill { Id = 1, Name = "Programming", Description = "The ability to write computer programs" },
                 new Skill { Id = 2, Name = "Design", Description = "The ability to create designs for user interfaces" },
                 new Skill { Id = 3, Name = "Database", Description = "The ability to manage and maintain database management systems" }
+            );
+
+            // Seed initial data for Goals
+            modelBuilder.Entity<Goal>().HasData(
+                new Goal { Id = 1, SkillId = 1, Description = "Complete a basic programming course", Deadline = new DateTime(2024, 12, 31), Status = Status.InProgress },
+                new Goal { Id = 2, SkillId = 2, Description = "Design a user interface for a mobile app", Deadline = new DateTime(2024, 06, 30), Status = Status.NotStarted },
+                new Goal { Id = 3, SkillId = 3, Description = "Optimize database performance", Deadline = new DateTime(2024, 09, 30), Status = Status.InProgress }
             );
         }
     }
