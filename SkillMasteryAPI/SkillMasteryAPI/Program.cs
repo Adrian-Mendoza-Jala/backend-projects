@@ -11,6 +11,7 @@ using SkillMasteryAPI.Application.Validators;
 using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.AspNetCore.Mvc;
 using FluentValidation.AspNetCore;
+using SkillMasteryAPI.Application.Mappers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,11 +28,22 @@ app.Run();
 void ConfigureServices(IServiceCollection services, IConfiguration configuration)
 {
     services.AddControllers();
-    builder.Services.AddHealthChecks();
-    builder.Services.AddRouting(options => options.LowercaseUrls = true);
+    services.AddHealthChecks();
+    services.AddRouting(options => options.LowercaseUrls = true);
+
     services.AddScoped<ISkillRepository, SkillRepository>();
+    services.AddScoped<IGoalRepository, GoalRepository>();
     services.AddScoped<ISkillService, SkillService>();
-    services.AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<SkillValidator>());
+    services.AddScoped<IGoalService, GoalService>();
+
+    services.AddFluentValidation(fv =>
+    {
+        fv.RegisterValidatorsFromAssemblyContaining<SkillValidator>();
+        fv.RegisterValidatorsFromAssemblyContaining<GoalValidator>();
+    });
+
+    services.AddAutoMapper(typeof(GoalsProfile).Assembly);
+
 
     services.AddEndpointsApiExplorer();
 
