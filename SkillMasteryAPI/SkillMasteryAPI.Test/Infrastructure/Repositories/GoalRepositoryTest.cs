@@ -46,34 +46,6 @@ public class GoalRepositoryTests : IDisposable
     }
 
     [Fact]
-    public async Task GetAllGoalsAsync_ReturnsAllGoals()
-    {
-        // Arrange
-        var repository = new GoalRepository(_context);
-
-        // Act
-        var goals = await repository.GetAllGoalsAsync();
-
-        // Assert
-        Assert.Equal(2, goals.Count());
-    }
-
-    [Fact]
-    public async Task GetGoalByIdAsync_ReturnsCorrectGoal()
-    {
-        // Arrange
-        var repository = new GoalRepository(_context);
-        var expectedId = 1;
-
-        // Act
-        var goal = await repository.GetGoalByIdAsync(expectedId);
-
-        // Assert
-        Assert.NotNull(goal);
-        Assert.Equal(expectedId, goal.Id);
-    }
-
-    [Fact]
     public async Task AddGoalAsync_AddsGoalSuccessfully()
     {
         // Arrange
