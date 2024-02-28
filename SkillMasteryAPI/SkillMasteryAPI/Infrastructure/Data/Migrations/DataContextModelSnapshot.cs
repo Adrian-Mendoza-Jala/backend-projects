@@ -2,13 +2,13 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using SkillMasteryAPI.Infrastructure.Data;
 
 #nullable disable
 
-namespace SkillMasteryAPI.Infrastructure.Data.Migrations
+namespace SkillMasteryAPI.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
     partial class DataContextModelSnapshot : ModelSnapshot
@@ -18,37 +18,37 @@ namespace SkillMasteryAPI.Infrastructure.Data.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "8.0.2")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+                .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+            NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
             modelBuilder.Entity("SkillMasteryAPI.Domain.Entities.Goal", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<DateTime>("Deadline")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                        .HasColumnType("character varying(255)");
 
                     b.Property<int>("SkillId")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<int>("Status")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
 
@@ -60,32 +60,32 @@ namespace SkillMasteryAPI.Infrastructure.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2024, 2, 16, 16, 57, 29, 144, DateTimeKind.Utc).AddTicks(665),
-                            Deadline = new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedAt = new DateTime(2024, 2, 28, 20, 13, 7, 975, DateTimeKind.Utc).AddTicks(3822),
+                            Deadline = new DateTime(2024, 12, 31, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "Complete a basic programming course",
                             SkillId = 1,
                             Status = 1,
-                            UpdatedAt = new DateTime(2024, 2, 16, 16, 57, 29, 144, DateTimeKind.Utc).AddTicks(665)
+                            UpdatedAt = new DateTime(2024, 2, 28, 20, 13, 7, 975, DateTimeKind.Utc).AddTicks(3822)
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2024, 2, 16, 16, 57, 29, 144, DateTimeKind.Utc).AddTicks(672),
-                            Deadline = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedAt = new DateTime(2024, 2, 28, 20, 13, 7, 975, DateTimeKind.Utc).AddTicks(3830),
+                            Deadline = new DateTime(2024, 6, 30, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "Design a user interface for a mobile app",
                             SkillId = 2,
                             Status = 0,
-                            UpdatedAt = new DateTime(2024, 2, 16, 16, 57, 29, 144, DateTimeKind.Utc).AddTicks(672)
+                            UpdatedAt = new DateTime(2024, 2, 28, 20, 13, 7, 975, DateTimeKind.Utc).AddTicks(3830)
                         },
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2024, 2, 16, 16, 57, 29, 144, DateTimeKind.Utc).AddTicks(673),
-                            Deadline = new DateTime(2024, 9, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedAt = new DateTime(2024, 2, 28, 20, 13, 7, 975, DateTimeKind.Utc).AddTicks(3832),
+                            Deadline = new DateTime(2024, 9, 30, 0, 0, 0, 0, DateTimeKind.Utc),
                             Description = "Optimize database performance",
                             SkillId = 3,
                             Status = 1,
-                            UpdatedAt = new DateTime(2024, 2, 16, 16, 57, 29, 144, DateTimeKind.Utc).AddTicks(674)
+                            UpdatedAt = new DateTime(2024, 2, 28, 20, 13, 7, 975, DateTimeKind.Utc).AddTicks(3832)
                         });
                 });
 
@@ -93,26 +93,26 @@ namespace SkillMasteryAPI.Infrastructure.Data.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Milestones")
                         .IsRequired()
                         .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                        .HasColumnType("character varying(255)");
 
                     b.Property<int>("SkillId")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
 
@@ -125,25 +125,25 @@ namespace SkillMasteryAPI.Infrastructure.Data.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                        .HasColumnType("character varying(255)");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                        .HasColumnType("character varying(255)");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
 
@@ -153,26 +153,26 @@ namespace SkillMasteryAPI.Infrastructure.Data.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2024, 2, 16, 16, 57, 29, 144, DateTimeKind.Utc).AddTicks(481),
+                            CreatedAt = new DateTime(2024, 2, 28, 20, 13, 7, 975, DateTimeKind.Utc).AddTicks(3574),
                             Description = "The ability to write computer programs",
                             Name = "Programming",
-                            UpdatedAt = new DateTime(2024, 2, 16, 16, 57, 29, 144, DateTimeKind.Utc).AddTicks(484)
+                            UpdatedAt = new DateTime(2024, 2, 28, 20, 13, 7, 975, DateTimeKind.Utc).AddTicks(3576)
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2024, 2, 16, 16, 57, 29, 144, DateTimeKind.Utc).AddTicks(486),
+                            CreatedAt = new DateTime(2024, 2, 28, 20, 13, 7, 975, DateTimeKind.Utc).AddTicks(3578),
                             Description = "The ability to create designs for user interfaces",
                             Name = "Design",
-                            UpdatedAt = new DateTime(2024, 2, 16, 16, 57, 29, 144, DateTimeKind.Utc).AddTicks(486)
+                            UpdatedAt = new DateTime(2024, 2, 28, 20, 13, 7, 975, DateTimeKind.Utc).AddTicks(3578)
                         },
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2024, 2, 16, 16, 57, 29, 144, DateTimeKind.Utc).AddTicks(487),
+                            CreatedAt = new DateTime(2024, 2, 28, 20, 13, 7, 975, DateTimeKind.Utc).AddTicks(3579),
                             Description = "The ability to manage and maintain database management systems",
                             Name = "Database",
-                            UpdatedAt = new DateTime(2024, 2, 16, 16, 57, 29, 144, DateTimeKind.Utc).AddTicks(488)
+                            UpdatedAt = new DateTime(2024, 2, 28, 20, 13, 7, 975, DateTimeKind.Utc).AddTicks(3580)
                         });
                 });
 

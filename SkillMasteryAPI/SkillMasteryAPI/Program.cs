@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.AspNetCore.Mvc;
 using FluentValidation.AspNetCore;
 using SkillMasteryAPI.Application.Mappers;
+using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -67,10 +68,14 @@ void ConfigureServices(IServiceCollection services, IConfiguration configuration
         options.Level = CompressionLevel.Fastest;
     });
 
+    //services.AddDbContext<DataContext>(options =>
+    //{
+    //    options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
+    //});
+
     services.AddDbContext<DataContext>(options =>
-    {
-        options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
-    });
+    options.UseNpgsql(configuration.GetConnectionString("PostgresConnection")));
+
 }
 
 void ConfigureMiddleware(WebApplication app, IWebHostEnvironment env)

@@ -49,9 +49,9 @@ namespace SkillMasteryAPI.Infrastructure.Data
 
             // Seed initial data for Goals
             modelBuilder.Entity<Goal>().HasData(
-                new Goal { Id = 1, SkillId = 1, Description = "Complete a basic programming course", Deadline = new DateTime(2024, 12, 31), Status = Status.InProgress },
-                new Goal { Id = 2, SkillId = 2, Description = "Design a user interface for a mobile app", Deadline = new DateTime(2024, 06, 30), Status = Status.NotStarted },
-                new Goal { Id = 3, SkillId = 3, Description = "Optimize database performance", Deadline = new DateTime(2024, 09, 30), Status = Status.InProgress }
+                new Goal { Id = 1, SkillId = 1, Description = "Complete a basic programming course", Deadline = DateTime.SpecifyKind(new DateTime(2024, 12, 31), DateTimeKind.Utc), Status = Status.InProgress },
+                new Goal { Id = 2, SkillId = 2, Description = "Design a user interface for a mobile app", Deadline = DateTime.SpecifyKind(new DateTime(2024, 06, 30), DateTimeKind.Utc), Status = Status.NotStarted },
+                new Goal { Id = 3, SkillId = 3, Description = "Optimize database performance", Deadline = DateTime.SpecifyKind(new DateTime(2024, 09, 30), DateTimeKind.Utc), Status = Status.InProgress }
             );
         }
     }
